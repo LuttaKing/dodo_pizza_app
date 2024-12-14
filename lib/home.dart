@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // backgroundColor: backGroundOrange,
+    backgroundColor: Colors.white,
 
       body: SingleChildScrollView(
         child: Padding(
@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               color: Colors.white,
               child: Column(children: [ 
+                SizedBox(height: 10,),
                 PizzaItem(),
         
                  PizzaItem(),
@@ -213,14 +214,29 @@ class PizzaItem extends StatelessWidget {
           SizedBox(height: 10,),
               ],),
           
-              Container(
-                decoration: BoxDecoration(
-                  color: primaryColor,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(15), bottomRight: Radius.circular(15))
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(" + ADD ",style: GoogleFonts.inter(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w600),),
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+              context: context,
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(0)),
+              ),
+              builder: (context) {
+                return ModallSheet();
+              },
+            );
+                },
+                child: Container(
+                  
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(15), bottomRight: Radius.circular(15))
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(" + ADD ",style: GoogleFonts.inter(color: Colors.white,fontSize: 10,fontWeight: FontWeight.w600),),
+                  ),
                 ),
               ),
             ],
@@ -249,3 +265,4 @@ class PizzaItem extends StatelessWidget {
     );
   }
 }
+
